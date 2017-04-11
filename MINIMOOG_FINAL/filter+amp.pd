@@ -1,0 +1,53 @@
+#N canvas 1917 414 614 615 10;
+#X obj 1 0 cnv 15 600 600 empty empty empty 20 12 0 14 -232576 -66577
+0;
+#X text 18 146 ADD UP ALL THREE OSCILLATORS TO SEND THROUGH VCF~ (LEFT
+INLET), f 12;
+#X text 222 77 USE ASR~ TO CONTROL CENTER FREQUENCY;
+#X obj 203 322 vcf~, f 30;
+#X floatatom 416 298 5 0 0 0 - - -, f 5;
+#X obj 343 213 unpack f f f;
+#X obj 291 243 *~, f 9;
+#X obj 292 273 +~, f 14;
+#X obj 153 208 /~ 3;
+#X obj 256 2 r note_data;
+#X obj 256 24 unpack;
+#X obj 289 58 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X obj 209 526 *~;
+#X obj 209 548 outlet~;
+#X floatatom 102 554 5 0 0 0 - - -, f 5;
+#X text 160 3 GETTING THE PROFILES OVER TIME, f 14;
+#X text 33 128 GETTING your OSCILLATORS;
+#X obj 100 152 catch~ ocsum;
+#X obj 102 532 env~;
+#X obj 509 30 r filter_asr;
+#X obj 475 295 r amp_asr;
+#X obj 413 149 r filter_params;
+#X obj 269 97 cnv 15 75 40 empty empty empty 20 12 0 14 -259378 -66577
+0;
+#X obj 292 106 asr~;
+#X obj 416 349 cnv 15 75 40 empty empty empty 20 12 0 14 -259378 -66577
+0;
+#X obj 441 357 asr~;
+#X connect 3 0 12 0;
+#X connect 4 0 3 2;
+#X connect 5 0 6 1;
+#X connect 5 1 7 1;
+#X connect 5 2 4 0;
+#X connect 6 0 7 0;
+#X connect 7 0 3 1;
+#X connect 8 0 3 0;
+#X connect 9 0 10 0;
+#X connect 10 1 11 0;
+#X connect 11 0 23 0;
+#X connect 11 0 25 0;
+#X connect 12 0 13 0;
+#X connect 12 0 18 0;
+#X connect 17 0 8 0;
+#X connect 18 0 14 0;
+#X connect 19 0 23 1;
+#X connect 20 0 25 1;
+#X connect 21 0 5 0;
+#X connect 23 0 6 0;
+#X connect 25 0 12 1;

@@ -1,0 +1,144 @@
+#N canvas 1450 365 480 750 10;
+#X obj -1 -3 cnv 15 480 950 empty empty empty 20 12 0 14 -258571 -66577
+0;
+#X obj 64 590 cnv 15 210 150 empty empty empty 20 12 0 14 -204786 -66577
+0;
+#X obj 210 419 cnv 15 240 95 empty empty empty 20 12 0 14 -212212 -66577
+0;
+#X obj 165 299 cnv 15 130 115 empty empty empty 20 12 0 14 -262127
+-66577 0;
+#X obj 40 284 cnv 15 80 50 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 33 82 cnv 15 60 50 empty empty empty 20 12 0 14 -256878 -66577
+0;
+#X obj 11 735 cnv 15 110 25 empty empty empty 20 12 0 14 -259828 -66577
+0;
+#X obj 13 34 unpack;
+#X obj 13 5 r note_data;
+#X obj 14 378 line~;
+#X obj 54 288 r glide;
+#X floatatom 52 312 5 0 0 0 - - -, f 5;
+#X obj 14 344 pack f f;
+#X obj 14 561 +~, f 31;
+#X obj 288 490 line~;
+#X obj 289 467 pack f 50;
+#X floatatom 13 56 5 0 0 0 - - -, f 5;
+#X obj 288 422 r midi_mod;
+#X obj 216 422 r~ mod_sig;
+#X floatatom 287 448 5 0 0 0 - - -, f 5;
+#X obj 216 536 *~;
+#N canvas 256 363 610 317 wavetable_osc 0;
+#X obj 9 82 phasor~;
+#X obj 9 104 *~ 2045;
+#X obj 9 126 +~ 1;
+#X obj 11 259 outlet~;
+#X obj 9 25 inlet~;
+#X obj 77 133 inlet;
+#X obj 18 201 tabread4~ square;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 2 0 6 0;
+#X connect 4 0 0 0;
+#X connect 5 0 6 0;
+#X connect 6 0 3 0;
+#X restore 14 739 pd wavetable_osc;
+#X text 88 6 RECEIVE NOTE INFORMATION FROM MIDI CONTROLLER;
+#X obj 171 301 r bend;
+#X obj 14 448 +~, f 16;
+#X obj 218 303 r bend_size, f 12;
+#X obj 190 372 pack f 50;
+#X obj 196 393 line~;
+#X text 358 421 MULTIPLY THE MODULATION WAVEFORM WITH OSCILLATOR 1
+, f 14;
+#X text 302 302 MULTIPLY BEND # FROM MIDI WHEEL AND BEND SIZE FROM
+MAIN WINDOW, f 22;
+#X obj 15 878 *~;
+#X msg 122 680 set square;
+#X msg 75 643 set pulse;
+#X msg 100 661 set sawtooth;
+#X msg 146 699 set triangle;
+#X obj 86 621 sel 0 1 2 3;
+#X floatatom 86 602 5 0 0 0 - waveform_osc#1 -, f 5;
+#X obj 12 232 +, f 14;
+#X text 40 256 GLIDE FROM ONE NOTE TO THE NEXT, f 18;
+#X obj 41 86 r tune;
+#X obj 41 109 t b b;
+#X obj 12 146 +, f 9;
+#X text 162 617 <---SET WAVEFORM FOR OSC1 FROM MAIN, f 18;
+#X obj 112 116 cnv 15 90 110 empty empty empty 20 12 0 14 -4034 -66577
+0;
+#X floatatom 113 145 5 0 0 0 - - -, f 5;
+#X obj 113 164 - 3;
+#X floatatom 113 186 5 0 0 0 - - -, f 5;
+#X obj 113 205 * 12;
+#X text 201 124 RECEIVE OCTAVE FROM OSC1;
+#X obj 32 777 cnv 15 210 90 empty empty empty 20 12 0 14 -36803 -66577
+0;
+#X floatatom 35 805 5 0 0 0 - - -, f 5;
+#X obj 35 846 line~;
+#X text 116 782 <---RECEIVE LEVEL INPUT FOR OSC 1 FROM MAIN, f 20
+;
+#X obj 35 783 r level_osc\$1;
+#X obj 113 123 r octave_osc\$1;
+#X text 143 206 12 semitones;
+#X obj 17 645 mtof~;
+#X obj 318 751 env~;
+#X floatatom 318 773 5 0 0 0 - - -, f 5;
+#X text 361 742 measures amplitude DB, f 15;
+#X obj 15 900 throw~ ocsum;
+#X obj 35 824 pack f 30;
+#X floatatom 171 323 5 0 0 0 - - -, f 5;
+#X floatatom 218 325 5 0 0 0 - - -, f 5;
+#X obj 196 349 *;
+#X text 277 577 <--------------up until this point \, you are receiving
+numbers from midi controller \, not a signal, f 30;
+#X connect 7 0 16 0;
+#X connect 8 0 7 0;
+#X connect 9 0 24 0;
+#X connect 10 0 11 0;
+#X connect 11 0 12 1;
+#X connect 12 0 9 0;
+#X connect 13 0 56 0;
+#X connect 14 0 20 1;
+#X connect 15 0 14 0;
+#X connect 16 0 41 0;
+#X connect 17 0 19 0;
+#X connect 18 0 20 0;
+#X connect 19 0 15 0;
+#X connect 20 0 13 1;
+#X connect 21 0 30 0;
+#X connect 21 0 57 0;
+#X connect 23 0 62 0;
+#X connect 23 0 64 0;
+#X connect 24 0 13 0;
+#X connect 25 0 63 0;
+#X connect 25 0 64 1;
+#X connect 26 0 27 0;
+#X connect 27 0 24 1;
+#X connect 30 0 60 0;
+#X connect 31 0 21 1;
+#X connect 32 0 21 1;
+#X connect 33 0 21 1;
+#X connect 34 0 21 1;
+#X connect 35 0 32 0;
+#X connect 35 1 33 0;
+#X connect 35 2 31 0;
+#X connect 35 3 34 0;
+#X connect 36 0 35 0;
+#X connect 37 0 12 0;
+#X connect 39 0 40 0;
+#X connect 40 0 41 0;
+#X connect 40 1 41 1;
+#X connect 41 0 37 0;
+#X connect 44 0 45 0;
+#X connect 45 0 46 0;
+#X connect 46 0 47 0;
+#X connect 47 0 37 1;
+#X connect 50 0 61 0;
+#X connect 51 0 30 1;
+#X connect 53 0 50 0;
+#X connect 54 0 44 0;
+#X connect 56 0 21 0;
+#X connect 57 0 58 0;
+#X connect 61 0 51 0;
+#X connect 64 0 26 0;
